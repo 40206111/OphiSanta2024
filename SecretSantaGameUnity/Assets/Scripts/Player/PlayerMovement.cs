@@ -12,20 +12,26 @@ namespace SecretSanta.Player
 
         private bool _touching;
 
+        private PlayerControls playerControls;
+
+        private void Awake()
+        {
+            playerControls = new PlayerControls();
+        }
+
+        private void OnEnable()
+        {
+            playerControls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            playerControls.Disable();
+        }
+
         private void Update()
         {
-            var dir = new Vector2();
-
-            if (Input.touchCount > 0)
-            {
-                dir = CheckTouchControls();
-            }
-            else
-            {
-                _touching = false;
-                dir = CheckKeyboardControls();
-            }
-
+            var dir = playerControls.BattleControls.Move.ReadValue<Vector2>();
 
             var velocity = _speed * Time.deltaTime * dir;
 
