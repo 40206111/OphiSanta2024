@@ -6,7 +6,8 @@ namespace SecretSanta.Boot
 {
     public class SceneLoader : MonoBehaviour
     {
-        public const string DefaultScenePath = "Assets/Scenes/BootScene";
+        public const string ScenePath = "Assets/Scenes/";
+        public const string SceneExtension = ".unity";
         public const string BootSceneName = "BootScene";
         public const string BattleSceneName = "BattleScene";
         public const string BattleUiSceneName = "BattleUIScene";
