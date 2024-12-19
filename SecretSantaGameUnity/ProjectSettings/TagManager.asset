@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -38,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 3098107031
+    locked: 0
   - name: weapon fx
     uniqueID: 1564722039
     locked: 0
