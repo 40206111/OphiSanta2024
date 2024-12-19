@@ -1,3 +1,4 @@
+using SecretSanta.GameManagment;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,6 @@ namespace SecretSanta.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField]
         private float _speed;
 
         private PlayerControls playerControls;
@@ -28,6 +28,8 @@ namespace SecretSanta.Player
 
         private void Update()
         {
+            _speed = SecretSantaGame.Instance.CurPlayerData.Speed;
+
             var dir = playerControls.BattleControls.Move.ReadValue<Vector2>();
 
             var velocity = _speed * Time.deltaTime * dir;

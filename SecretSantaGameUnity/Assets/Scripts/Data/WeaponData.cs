@@ -1,6 +1,6 @@
 
 
-namespace SecretSanta.Enemy
+namespace SecretSanta.Data
 {
     public class WeaponData : EntityData
     {

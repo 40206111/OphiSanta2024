@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace SecretSanta.Enemy
+namespace SecretSanta.Data
 {
     public abstract class EntityData
     {
