@@ -9,6 +9,7 @@ namespace SecretSanta.Player
         [SerializeField] int _damage = 1;
         [SerializeField] float _speed = 2;
         [SerializeField] float _cooldown = 0.5f;
+        [SerializeField] BoxCollider2D _collider;
 
         bool _swinging = false;
         bool _isClockwise = true;

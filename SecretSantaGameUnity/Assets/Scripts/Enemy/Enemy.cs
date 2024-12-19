@@ -8,6 +8,7 @@ namespace SecretSanta.Enemy
     {
         public GameObject TargetObject;
         [SerializeField] float _speed = 1;
+        [SerializeField] BoxCollider2D _collider;
 
         private void Update()
         {
