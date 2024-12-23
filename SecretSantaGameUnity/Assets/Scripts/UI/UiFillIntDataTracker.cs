@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UiFillIntDataTracker : UiIntDataTracker
+namespace SecretSanta.UI
 {
-    Image FillImage;
-    protected int _fullAmount;
-
-    protected override void Awake()
+    public class UiFillIntDataTracker : UiIntDataTracker
     {
-        FillImage = GetComponent<Image>();
+        Image FillImage;
+        protected int _fullAmount;
 
-        base.Awake();
-    }
+        protected override void Awake()
+        {
+            FillImage = GetComponent<Image>();
 
-    protected override void DoTracking()
-    {
-        FillImage.fillAmount = (float)_trackedData / (float)_fullAmount;
+            base.Awake();
+        }
+
+        protected override void DoTracking()
+        {
+            FillImage.fillAmount = (float)_trackedData / (float)_fullAmount;
+        }
     }
 }

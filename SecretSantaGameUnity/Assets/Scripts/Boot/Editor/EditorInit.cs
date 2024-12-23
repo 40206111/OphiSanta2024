@@ -17,7 +17,7 @@ namespace SecretSanta.Boot.Editor
                 return;
             }
             EditorSceneManager.playModeStartScene = sceneAsset;
-            Debug.Log(pathOfFirstScene + " was set as default play mode scene");
+            Debug.Log($"{pathOfFirstScene} was set as default play mode scene");
         }
     }
 }

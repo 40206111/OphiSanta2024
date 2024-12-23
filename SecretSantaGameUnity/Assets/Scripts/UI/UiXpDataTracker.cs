@@ -1,12 +1,15 @@
 using SecretSanta.GameManagment;
 
-public class UiXpDataTracker : UiFillIntDataTracker
+namespace SecretSanta.UI
 {
-    protected override void Update()
+    public class UiXpDataTracker : UiFillIntDataTracker
     {
-        _trackedData = SecretSantaGame.Instance.CurPlayerData.Experience;
-        _fullAmount = SecretSantaGame.Instance.CurPlayerData.XpToNextLvl;
-        base.Update();
-    }
+        protected override void Update()
+        {
+            _trackedData = SecretSantaGame.Instance.CurPlayerData.Experience;
+            _fullAmount = SecretSantaGame.Instance.CurPlayerData.XpToNextLvl;
+            base.Update();
+        }
 
+    }
 }

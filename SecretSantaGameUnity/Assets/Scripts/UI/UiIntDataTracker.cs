@@ -2,25 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UiIntDataTracker : MonoBehaviour
+namespace SecretSanta.UI
 {
-    protected int _trackedData;
-    int lastData;
-
-    protected virtual void Awake()
+    public class UiIntDataTracker : MonoBehaviour
     {
-        lastData = int.MaxValue;
-    }
+        protected int _trackedData;
+        int _lastData;
 
-    protected virtual void Update()
-    {
-        if (lastData != _trackedData)
+        protected virtual void Awake()
         {
-            lastData = _trackedData;
-            DoTracking();
+            _lastData = int.MaxValue;
         }
+
+        protected virtual void Update()
+        {
+            if (_lastData != _trackedData)
+            {
+                DoTracking();
+                _lastData = _trackedData;
+            }
+        }
+
+        protected virtual void DoTracking() { }
+
     }
-
-    protected virtual void DoTracking() {}
-
 }

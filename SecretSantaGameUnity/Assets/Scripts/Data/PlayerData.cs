@@ -11,7 +11,7 @@ namespace SecretSanta.Data
         {
             Damage = 1;
             Speed = 2;
-            Health = 3;
+            Health = 6;
             Experience = 0;
             XpToNextLvl = 5;
         }
