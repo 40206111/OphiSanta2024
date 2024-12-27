@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Weapon
+  - Doot
   layers:
   - Default
   - TransparentFX
@@ -49,6 +50,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: Weapon
     uniqueID: 1399516793
     locked: 0
