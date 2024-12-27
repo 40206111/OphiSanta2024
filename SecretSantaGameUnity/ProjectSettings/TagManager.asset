@@ -44,11 +44,11 @@ TagManager:
   - name: background
     uniqueID: 3098107031
     locked: 0
-  - name: weapon fx
-    uniqueID: 1564722039
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: weapon fx
+    uniqueID: 1564722039
     locked: 0
   - name: Weapon
     uniqueID: 1399516793

@@ -1,4 +1,5 @@
-using System.Collections;
+using SecretSanta.Data;
+using SecretSanta.Enemy;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,14 +7,16 @@ namespace SecretSanta.Player
 {
     public class Weapon : MonoBehaviour
     {
-        [SerializeField] int _damage = 1;
-        [SerializeField] float _speed = 2;
-        [SerializeField] float _cooldown = 0.5f;
-        [SerializeField] BoxCollider2D _collider;
+        WeaponData Data = new WeaponData();
 
         bool _swinging = false;
         bool _isClockwise = true;
         float _timeCooling = 0;
+
+        private void Awake()
+        {
+            Data.SetDefultData();
+        }
 
         private void Update()
         {
@@ -22,7 +25,7 @@ namespace SecretSanta.Player
                 return;
             }
 
-            if (_timeCooling >= _cooldown)
+            if (_timeCooling >= Data.Cooldown)
             {
                 StartCoroutine(WaitForSwing());
                 _timeCooling = 0;
@@ -44,7 +47,7 @@ namespace SecretSanta.Player
             while (totRotateAmount < 360)
             {
                 //TODO: This should start fast and slow as it rotates
-                float rotateAmount = 100 * _speed * Time.deltaTime * multiplier;
+                float rotateAmount = multiplier * Time.deltaTime * 100 * Data.Speed;
                 transform.Rotate(new Vector3(0, 0, rotateAmount));
                 totRotateAmount += rotateAmount * multiplier;
                 yield return null;
@@ -55,5 +58,17 @@ namespace SecretSanta.Player
             _swinging = false;
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                var enemy = other.GetComponent<SecretSanta.Enemy.Enemy>();
+                if ( enemy == null )
+                {
+                    return;
+                }
+                enemy.DoDamage(Data.Damage);
+            }
+        }
     }
 }

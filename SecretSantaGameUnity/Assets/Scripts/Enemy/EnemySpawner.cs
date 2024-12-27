@@ -19,6 +19,16 @@ namespace SecretSanta.Enemy
 
         private void Update()
         {
+            for (int i = 0; i < _activeEnemies.Count; ++i)
+            {
+                if (_activeEnemies[i].Data.Health <= 0)
+                {
+                    _enemyPool.Add(_activeEnemies[i]);
+                    _activeEnemies.RemoveAt(i);
+                    i--;
+                }
+            }
+
             if (_coolDownTimer >= _spawnCooldown)
             {
                 Enemy enemy;
@@ -32,6 +42,7 @@ namespace SecretSanta.Enemy
                     enemy = Instantiate(_enemyPrefab, transform);
                 }
                 enemy.Data.SetDefultData();
+                enemy.gameObject.SetActive(true);
                 var randX = Random.Range(-_spawnRadius, _spawnRadius);
                 randX = randX > 0 ? Mathf.Max(randX, _deadZone) : Mathf.Min(randX, -_deadZone);
                 var randY = Random.Range(-_spawnRadius, _spawnRadius);
@@ -50,5 +61,6 @@ namespace SecretSanta.Enemy
 
             _coolDownTimer += Time.deltaTime;
         }
+
     }
 }
