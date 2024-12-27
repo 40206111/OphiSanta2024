@@ -20,7 +20,6 @@ namespace SecretSanta.UI
 
         protected override void DoTracking()
         {
-            Debug.Log("int to hearts tracking");
             if (_prefabs.Count < _trackedData)
             {
                 var delta = _trackedData - _prefabs.Count;
