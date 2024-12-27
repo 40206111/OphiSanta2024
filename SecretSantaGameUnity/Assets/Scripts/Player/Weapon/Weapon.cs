@@ -3,7 +3,7 @@ using SecretSanta.Enemy;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SecretSanta.Player
+namespace SecretSanta.Weapon
 {
     public class Weapon : MonoBehaviour
     {

@@ -1,4 +1,5 @@
 using SecretSanta.Data;
+using SecretSanta.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,12 @@ namespace SecretSanta.Enemy
         public GameObject TargetObject;
         public EnemyData Data = new EnemyData();
         [SerializeField] GameObject _doot;
+        public float coolDownTimer;
 
         private void Update()
         {
             transform.position = Vector3.MoveTowards( transform.position, TargetObject.transform.position, Data.Speed  * Time.deltaTime );
+            coolDownTimer = Mathf.Max(coolDownTimer - Time.deltaTime, 0);
         }
 
         public void DoDamage(int value)
@@ -27,9 +30,19 @@ namespace SecretSanta.Enemy
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (coolDownTimer > 0)
+            {
+                return;
+            }
             if (collision.CompareTag("Player"))
             {
-                
+                var player = collision.GetComponent<PlayerController>();
+                if (player == null)
+                {
+                    return;
+                }
+                player.DoDamage(Data.Damage);
+                coolDownTimer = Data.DamageCooldown;
             }
 
         }

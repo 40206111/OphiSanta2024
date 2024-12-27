@@ -20,6 +20,7 @@ namespace SecretSanta.UI
 
         protected override void DoTracking()
         {
+            Debug.Log("int to hearts tracking");
             if (_prefabs.Count < _trackedData)
             {
                 var delta = _trackedData - _prefabs.Count;
@@ -35,10 +36,16 @@ namespace SecretSanta.UI
                 if (i * 2 < _trackedData)
                 {
                     _prefabs[i].gameObject.SetActive(true);
-                    _prefabs[i].sprite = _trackedData % 2 == 1 && i == _prefabs.Count - 1 ? halfSprite : fullSprite;
+                    _prefabs[i].sprite = fullSprite;
                     continue;
                 }
                 _prefabs[i].gameObject.SetActive(false);
+            }
+
+            if (_trackedData % 2 == 1)
+            {
+                var index = ((_trackedData + 1) * 0.5f) - 1;
+                _prefabs[(int)index].sprite = halfSprite;
             }
 
         }

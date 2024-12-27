@@ -35,18 +35,22 @@ namespace SecretSanta.GameManagment
 
         void RestartPressed(InputAction.CallbackContext cbc)
         {
-            Debug.Log("aaaah");
             if (GameOvered)
             {
                 SceneLoader.Instance.Restart();
-                GameOvered = false;
-                GameStarted = false;
             }
             if (!GameStarted)
             {
                 SceneLoader.Instance.Go();
                 GameStarted = true;
             }
+        }
+
+        private IEnumerator<YieldInstruction> WaitToGoAgain()
+        {
+            yield return new WaitForSeconds(0.5f);
+            GameOvered = false;
+            GameStarted = false;
         }
 
         public void GameOver()

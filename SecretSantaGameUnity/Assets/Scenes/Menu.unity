@@ -701,14 +701,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &4675613495721050621
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9047950629531509566}
-  m_Enabled: 1
 --- !u!61 &5380474069117829011
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -966,7 +958,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1670534967541874687}
   - component: {fileID: 3546586582767218132}
-  - component: {fileID: 4675613495721050621}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Player

@@ -43,9 +43,14 @@ namespace SecretSanta.Player
         public void DoDamage( int value )
         {
             var health = _data.Health - value;
+            Debug.Log($"Player health before: {_data.Health}, after not clamped {health}");
             _data.Health = Mathf.Max(health, 0);
-            playerControls.Disable();
-            SecretSantaGame.Instance.GameOver();
+            if (health == 0)
+            {
+                playerControls.Disable();
+                SecretSantaGame.Instance.GameOver();
+            }
+            SecretSantaGame.Instance.CurPlayerData = _data;
         }
     }
 }

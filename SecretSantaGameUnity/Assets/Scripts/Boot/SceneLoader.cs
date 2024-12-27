@@ -42,6 +42,7 @@ namespace SecretSanta.Boot
 
             SceneManager.UnloadSceneAsync(BootSceneName);
         }
+
         private IEnumerator<YieldInstruction> LoadBattle()
         {
             var loadBattleScene = SceneManager.LoadSceneAsync(BattleSceneName, LoadSceneMode.Additive);
