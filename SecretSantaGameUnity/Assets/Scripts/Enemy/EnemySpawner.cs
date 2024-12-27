@@ -31,6 +31,7 @@ namespace SecretSanta.Enemy
                 {
                     enemy = Instantiate(_enemyPrefab, transform);
                 }
+                enemy.Data.SetDefultData();
                 var randX = Random.Range(-_spawnRadius, _spawnRadius);
                 randX = randX > 0 ? Mathf.Max(randX, _deadZone) : Mathf.Min(randX, -_deadZone);
                 var randY = Random.Range(-_spawnRadius, _spawnRadius);
