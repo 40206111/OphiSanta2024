@@ -105,6 +105,45 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""GameNavigation"",
+            ""id"": ""a9ba5e55-6311-4f27-9b12-09255048ccb1"",
+            ""actions"": [
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Value"",
+                    ""id"": ""a5afc2f0-978b-43a7-b99f-05f8a9b4d89b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ddfdce48-3d38-49af-9687-a830f7617b72"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7668ba76-4a93-4a57-a6d2-02f45a078464"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -112,6 +151,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // BattleControls
         m_BattleControls = asset.FindActionMap("BattleControls", throwIfNotFound: true);
         m_BattleControls_Move = m_BattleControls.FindAction("Move", throwIfNotFound: true);
+        // GameNavigation
+        m_GameNavigation = asset.FindActionMap("GameNavigation", throwIfNotFound: true);
+        m_GameNavigation_Restart = m_GameNavigation.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -215,8 +257,58 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public BattleControlsActions @BattleControls => new BattleControlsActions(this);
+
+    // GameNavigation
+    private readonly InputActionMap m_GameNavigation;
+    private List<IGameNavigationActions> m_GameNavigationActionsCallbackInterfaces = new List<IGameNavigationActions>();
+    private readonly InputAction m_GameNavigation_Restart;
+    public struct GameNavigationActions
+    {
+        private @PlayerControls m_Wrapper;
+        public GameNavigationActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Restart => m_Wrapper.m_GameNavigation_Restart;
+        public InputActionMap Get() { return m_Wrapper.m_GameNavigation; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameNavigationActions set) { return set.Get(); }
+        public void AddCallbacks(IGameNavigationActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GameNavigationActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameNavigationActionsCallbackInterfaces.Add(instance);
+            @Restart.started += instance.OnRestart;
+            @Restart.performed += instance.OnRestart;
+            @Restart.canceled += instance.OnRestart;
+        }
+
+        private void UnregisterCallbacks(IGameNavigationActions instance)
+        {
+            @Restart.started -= instance.OnRestart;
+            @Restart.performed -= instance.OnRestart;
+            @Restart.canceled -= instance.OnRestart;
+        }
+
+        public void RemoveCallbacks(IGameNavigationActions instance)
+        {
+            if (m_Wrapper.m_GameNavigationActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGameNavigationActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GameNavigationActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GameNavigationActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GameNavigationActions @GameNavigation => new GameNavigationActions(this);
     public interface IBattleControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
+    }
+    public interface IGameNavigationActions
+    {
+        void OnRestart(InputAction.CallbackContext context);
     }
 }

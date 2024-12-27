@@ -24,5 +24,14 @@ namespace SecretSanta.Enemy
             var doot = Instantiate(_doot);
             doot.transform.position = transform.position;
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                
+            }
+
+        }
     }
 }

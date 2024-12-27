@@ -1,3 +1,4 @@
+using SecretSanta.Data;
 using SecretSanta.GameManagment;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,11 +6,10 @@ using UnityEngine;
 
 namespace SecretSanta.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
-        private float _speed;
-
         private PlayerControls playerControls;
+        PlayerData _data;
 
         private void Awake()
         {
@@ -28,15 +28,24 @@ namespace SecretSanta.Player
 
         private void Update()
         {
-            _speed = SecretSantaGame.Instance.CurPlayerData.Speed;
+            _data = SecretSantaGame.Instance.CurPlayerData;
+            _data.Speed = SecretSantaGame.Instance.CurPlayerData.Speed;
 
             var dir = playerControls.BattleControls.Move.ReadValue<Vector2>();
 
-            var velocity = _speed * Time.deltaTime * dir;
+            var velocity = _data.Speed * Time.deltaTime * dir;
 
             var pos = transform.position;
             pos += new Vector3(velocity.x, velocity.y, 0);
             transform.position = pos;
+        }
+
+        public void DoDamage( int value )
+        {
+            var health = _data.Health - value;
+            _data.Health = Mathf.Max(health, 0);
+            playerControls.Disable();
+            SecretSantaGame.Instance.GameOver();
         }
     }
 }
