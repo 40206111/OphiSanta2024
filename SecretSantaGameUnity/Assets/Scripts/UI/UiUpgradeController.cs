@@ -10,11 +10,13 @@ namespace SecretSanta.UI
     public class UiUpgradeController : MonoBehaviour
     {
         [SerializeField] List<UpgradeSO> Upgrades;
+        [SerializeField] List<UpgradeSO> BackUpUpgrades;
         [SerializeField] Upgrade UpgradePrefab;
         [SerializeField] int _upgradesToShow;
 
         List<Upgrade> _upgradePool = new List<Upgrade>();
         List<UpgradeData> _upgradeDataPool = new List<UpgradeData>();
+        List<UpgradeData> _backUpUpgradeData = new List<UpgradeData>();
         List<UpgradeData> _usedUpgrades = new List<UpgradeData>();
 
         bool OpenedUpgrades;
@@ -39,6 +41,12 @@ namespace SecretSanta.UI
                 var upgradeData = new UpgradeData(upgrade);
                 _upgradeDataPool.Add(upgradeData);
             }
+
+            foreach (var upgrade in BackUpUpgrades)
+            {
+                var upgradeData = new UpgradeData(upgrade);
+                _backUpUpgradeData.Add(upgradeData);
+            }
         }
 
         private void Update()
@@ -55,6 +63,14 @@ namespace SecretSanta.UI
             foreach ( var upgrade in _upgradePool )
             {
                 upgrade.gameObject.SetActive(true);
+                if (_upgradeDataPool.Count == 0)
+                {
+                    var id = Random.Range(0, _backUpUpgradeData.Count);
+                    var backUpData = _upgradeDataPool[id];
+                    upgrade.SetUp(backUpData);
+                    _usedUpgrades.Add(backUpData);
+                    continue;
+                }
                 var index = Random.Range(0, _upgradeDataPool.Count);
                 var data = _upgradeDataPool[index];
                 upgrade.SetUp(data);
