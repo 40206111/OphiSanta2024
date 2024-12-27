@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4723333337581679699}
   - component: {fileID: 6272927940858798627}
   - component: {fileID: 8716963880545734565}
+  - component: {fileID: 6955373227000679405}
   m_Layer: 0
   m_Name: doot
   m_TagString: Untagged
@@ -120,3 +121,15 @@ CircleCollider2D:
   m_Offset: {x: -0.005977541, y: 0}
   serializedVersion: 2
   m_Radius: 0.11984256
+--- !u!114 &6955373227000679405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2295955224308570802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b59cf37a774e6604fa4bff33825fcecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
