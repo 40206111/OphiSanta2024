@@ -14,7 +14,7 @@ namespace SecretSanta.GameManagment
 
         private PlayerControls mainControls;
 
-        private bool GameOvered = false;
+        public bool GameOvered = false;
         private bool GameStarted = false;
 
         private void Awake()
@@ -25,22 +25,30 @@ namespace SecretSanta.GameManagment
             }
 
             Instance = this;
-
-            CurPlayerData = new PlayerData();
-            CurPlayerData.SetDefultData();
             mainControls = new PlayerControls();
             mainControls.GameNavigation.Restart.performed += RestartPressed;
             mainControls.Enable();
+
+            Reset();
+        }
+
+        private void Reset()
+        {
+            CurPlayerData = new PlayerData();
+            CurPlayerData.SetDefultData();
         }
 
         void RestartPressed(InputAction.CallbackContext cbc)
         {
-            if (GameOvered)
+            if (GameOvered && GameStarted)
             {
                 SceneLoader.Instance.Restart();
+                Time.timeScale = 1;
+                StartCoroutine(WaitToGoAgain());
             }
             if (!GameStarted)
             {
+                Reset();
                 SceneLoader.Instance.Go();
                 GameStarted = true;
             }
