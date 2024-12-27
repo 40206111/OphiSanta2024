@@ -10,7 +10,7 @@ namespace SecretSanta.Data
         {
             Damage = 1;
             Speed = 2;
-            Cooldown = 0.7f;
+            Cooldown = 1.0f;
         }
     }
 }
