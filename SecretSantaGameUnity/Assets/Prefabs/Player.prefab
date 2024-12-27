@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d35614eb02e98cb42828a5d79988bb01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSprite: {fileID: 7020112799052755024}
 --- !u!50 &8116604817852840539
 Rigidbody2D:
   serializedVersion: 4

@@ -8,6 +8,7 @@ namespace SecretSanta.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] SpriteRenderer playerSprite;
         private PlayerControls playerControls;
         PlayerData _data;
 
@@ -51,6 +52,20 @@ namespace SecretSanta.Player
                 SecretSantaGame.Instance.GameOver();
             }
             SecretSantaGame.Instance.CurPlayerData = _data;
+            StartCoroutine(FlashRed());
+        }
+
+        private IEnumerator<YieldInstruction> FlashRed()
+        {
+            var beforeCol = playerSprite.color;
+
+            yield return new WaitForSeconds(0.05f);
+
+            playerSprite.color = Color.red;
+
+            yield return new WaitForSeconds(0.05f);
+
+            playerSprite.color = beforeCol;
         }
     }
 }
