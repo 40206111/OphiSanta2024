@@ -112,7 +112,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Restart"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""a5afc2f0-978b-43a7-b99f-05f8a9b4d89b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -136,7 +136,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""7668ba76-4a93-4a57-a6d2-02f45a078464"",
                     ""path"": ""<Keyboard>/anyKey"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Restart"",

@@ -3,6 +3,7 @@ using SecretSanta.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace SecretSanta.GameManagment
 {
@@ -28,35 +29,29 @@ namespace SecretSanta.GameManagment
             CurPlayerData = new PlayerData();
             CurPlayerData.SetDefultData();
             mainControls = new PlayerControls();
+            mainControls.GameNavigation.Restart.performed += RestartPressed;
+            mainControls.Enable();
         }
 
-        private void Update()
+        void RestartPressed(InputAction.CallbackContext cbc)
         {
+            Debug.Log("aaaah");
             if (GameOvered)
             {
-                if (mainControls.GameNavigation.Restart.triggered)
-                {
-                    SceneLoader.Instance.Restart();
-                    GameOvered = false;
-                    GameStarted = false;
-                }
-                return;
+                SceneLoader.Instance.Restart();
+                GameOvered = false;
+                GameStarted = false;
             }
-
             if (!GameStarted)
             {
-                if (mainControls.GameNavigation.Restart.triggered)
-                {
-                    Debug.Log("Start Game");
-                    SceneLoader.Instance.Restart();
-                    GameStarted = true;
-                }
+                SceneLoader.Instance.Go();
+                GameStarted = true;
             }
         }
+
         public void GameOver()
         {
             GameOvered = true;
-            mainControls.Enable();
             Time.timeScale = 0;
         }
 
