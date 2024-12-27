@@ -16,6 +16,7 @@ namespace SecretSanta.GameManagment
 
         public bool GameOvered = false;
         private bool GameStarted = false;
+        public bool UpgradeTime = false;
 
         private void Awake()
         {
@@ -30,6 +31,15 @@ namespace SecretSanta.GameManagment
             mainControls.Enable();
 
             Reset();
+        }
+
+        private void Update()
+        {
+            if (CurPlayerData.Experience >= CurPlayerData.XpToNextLvl)
+            {
+                Time.timeScale = 0;
+                UpgradeTime = true;
+            }
         }
 
         private void Reset()

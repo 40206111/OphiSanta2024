@@ -78,7 +78,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.9989417}
+  m_Offset: {x: 0.038676582, y: 1.8012795}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -89,7 +89,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5013996, y: 1.2430521}
+  m_Size: {x: 0.30835676, y: 0.72414494}
   m_EdgeRadius: 0
 --- !u!1 &5094694690225943082
 GameObject:
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 5094694690225943082}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.855, z: 0}
+  m_LocalPosition: {x: 0, y: 0.603, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -165,7 +165,7 @@ TrailRenderer:
   m_SortingLayerID: 1564722039
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.2
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -175,7 +175,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.78378296
+        value: 0.49324036
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -183,8 +183,17 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 0.43857187
+        value: 0.5541232
+        inSlope: -0.22810054
+        outSlope: -0.22810054
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 1
-        value: 0.5067566
+        value: 0.22297364
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -262,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 6737367582549792626}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: 0}
+  m_LocalPosition: {x: -0, y: 1.143, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
