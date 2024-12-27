@@ -15,7 +15,14 @@ namespace SecretSanta.Enemy
 
         private void Update()
         {
-            transform.position = Vector3.MoveTowards( transform.position, TargetObject.transform.position, Data.Speed  * Time.deltaTime );
+            if (Time.time % 1f < 0.7f)
+            {
+
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, TargetObject.transform.position, Data.Speed * Time.deltaTime * 3f);
+            }
             coolDownTimer = Mathf.Max(coolDownTimer - Time.deltaTime, 0);
         }
 

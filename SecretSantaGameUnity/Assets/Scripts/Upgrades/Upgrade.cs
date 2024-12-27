@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using SecretSanta.Data;
+using TMPro;
 using UnityEngine;
 
-public class Upgrade : MonoBehaviour
+namespace SecretSanta.Upgrades
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Upgrade : MonoBehaviour
     {
-        
-    }
+        [SerializeField] TextMeshProUGUI Title;
+        [SerializeField] TextMeshProUGUI Body;
+        public UpgradeData Data;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void SetUp(UpgradeData data)
+        {
+            Title.text = data.Title;
+            Body.text = data.Body;
+            Data = data;
+        }
+
+        public void Selected()
+        {
+            if (Data.Uses >= 0)
+            {
+                Data.Uses--;
+            }
+        }
     }
 }

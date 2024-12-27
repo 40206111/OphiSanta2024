@@ -39,6 +39,7 @@ namespace SecretSanta.GameManagment
             {
                 Time.timeScale = 0;
                 UpgradeTime = true;
+                CurPlayerData.Experience -= CurPlayerData.XpToNextLvl;
             }
         }
 
@@ -75,6 +76,12 @@ namespace SecretSanta.GameManagment
         {
             GameOvered = true;
             Time.timeScale = 0;
+        }
+
+        public void ResumeFromUpgrade()
+        {
+            UpgradeTime = false;
+            Time.timeScale = 1;
         }
 
     }

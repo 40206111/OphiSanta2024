@@ -1,7 +1,9 @@
-using SecretSant.Upgrade;
+using SecretSanta.Data;
+using SecretSanta.Upgrades;
 using SecretSanta.GameManagment;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SecretSanta.UI
 {
@@ -12,6 +14,8 @@ namespace SecretSanta.UI
         [SerializeField] int _upgradesToShow;
 
         List<Upgrade> _upgradePool = new List<Upgrade>();
+        List<UpgradeData> _upgradeDataPool = new List<UpgradeData>();
+        List<UpgradeData> _usedUpgrades = new List<UpgradeData>();
 
         bool OpenedUpgrades;
 
@@ -21,14 +25,27 @@ namespace SecretSanta.UI
             {
                 var upgradeCard = Instantiate(UpgradePrefab, transform);
                 upgradeCard.gameObject.SetActive(false);
+                var butt = upgradeCard.GetComponent<Button>();
+                if (i == 0)
+                {
+                    butt.Select();
+                }
+                butt.onClick.AddListener(CloseUpgrades);
                 _upgradePool.Add(upgradeCard);
+            }
+
+            foreach (var upgrade in Upgrades)
+            {
+                var upgradeData = new UpgradeData(upgrade);
+                _upgradeDataPool.Add(upgradeData);
             }
         }
 
         private void Update()
         {
-            if (SecretSantaGame.Instance.UpgradeTime)
+            if (!OpenedUpgrades && SecretSantaGame.Instance.UpgradeTime)
             {
+                OpenedUpgrades = true;
                 OpenUpgrades();
             }
         }
@@ -38,16 +55,31 @@ namespace SecretSanta.UI
             foreach ( var upgrade in _upgradePool )
             {
                 upgrade.gameObject.SetActive(true);
+                var index = Random.Range(0, _upgradeDataPool.Count);
+                var data = _upgradeDataPool[index];
+                upgrade.SetUp(data);
+                _usedUpgrades.Add(data);
+                _upgradeDataPool.RemoveAt(index);
             }
         }
 
         void CloseUpgrades()
         {
-            foreach (var upgrade in _upgradePool)
+            for (int i = 0; i < _upgradePool.Count; ++i)
             {
-                upgrade.gameObject.SetActive(false);
+                _upgradePool[i].gameObject.SetActive(false);
+                _usedUpgrades[i] = _upgradePool[i].Data;
+                if (_usedUpgrades[i].Uses != 0)
+                {
+                    _upgradeDataPool.Add(_usedUpgrades[i]);
+                }
             }
 
+            _usedUpgrades.Clear();
+
+            SecretSantaGame.Instance.ResumeFromUpgrade();
+            OpenedUpgrades = false;
         }
+
     }
 }

@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace SecretSant.Upgrade
+namespace SecretSanta.Data
 {
     [CreateAssetMenu(fileName = "UpgradeData", menuName = "ScriptableObjects/UpgradeData")]
     public class UpgradeSO : ScriptableObject
     {
+        public int Uses;
         public string Title;
         public string Body;
     }

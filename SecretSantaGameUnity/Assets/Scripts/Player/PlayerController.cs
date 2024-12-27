@@ -44,7 +44,6 @@ namespace SecretSanta.Player
         public void DoDamage( int value )
         {
             var health = _data.Health - value;
-            Debug.Log($"Player health before: {_data.Health}, after not clamped {health}");
             _data.Health = Mathf.Max(health, 0);
             if (health == 0)
             {
