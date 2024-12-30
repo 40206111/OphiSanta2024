@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 7020112799052755024}
+  _collectionRadBox: {fileID: 5927016969496914304}
 --- !u!50 &8116604817852840539
 Rigidbody2D:
   serializedVersion: 4

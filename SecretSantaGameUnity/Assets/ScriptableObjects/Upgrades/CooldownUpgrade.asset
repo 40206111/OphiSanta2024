@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: CooldownUpgrade
   m_EditorClassIdentifier: 
   Uses: 6
-  Title: Swing again faster
-  Body: swoosh swoosh
+  Title: First!
+  Body: swing again faster
+  AddHealth: 0
+  AddSpeed: 0
+  AddSwordSpeed: 0
+  AddSwordSize: 0
+  AddCollectRadius: 0
+  DecSwordCooldown: 0.1

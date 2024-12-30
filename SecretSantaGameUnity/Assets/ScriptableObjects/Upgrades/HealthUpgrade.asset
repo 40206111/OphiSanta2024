@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: HealthUpgrade
   m_EditorClassIdentifier: 
   Uses: -1
-  Title: Healthy
+  Title: Kiss Leto on her little head
   Body: +1 heart
+  AddHealth: 2
+  AddSpeed: 0
+  AddSwordSpeed: 0
+  AddSwordSize: 0
+  AddCollectRadius: 0
+  DecSwordCooldown: 0

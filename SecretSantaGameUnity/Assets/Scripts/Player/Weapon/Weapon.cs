@@ -1,5 +1,5 @@
 using SecretSanta.Data;
-using SecretSanta.Enemy;
+using SecretSanta.GameManagment;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +16,12 @@ namespace SecretSanta.Weapon
         private void Awake()
         {
             Data.SetDefultData();
+            SecretSantaGame.Instance.UpgradeAdded += UpgradeChosen;
+        }
+
+        private void OnDestroy()
+        {
+            SecretSantaGame.Instance.UpgradeAdded -= UpgradeChosen;
         }
 
         private void Update()
@@ -69,6 +75,13 @@ namespace SecretSanta.Weapon
                 }
                 enemy.DoDamage(Data.Damage);
             }
+        }
+
+        public void UpgradeChosen(UpgradeData data)
+        {
+            Data.Cooldown -= data.DecSwordCooldown;
+            Data.Speed += data.AddSwordSpeed;
+            transform.localScale *= (1 + data.AddSwordSize);
         }
     }
 }

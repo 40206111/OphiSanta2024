@@ -8,5 +8,13 @@ namespace SecretSanta.Data
         public int Uses;
         public string Title;
         public string Body;
+
+        public int AddHealth;
+        public float AddSpeed;
+        public float AddSwordSpeed;
+        public float AddSwordSize;
+        public float AddCollectRadius;
+        public float DecSwordCooldown;
+
     }
 }

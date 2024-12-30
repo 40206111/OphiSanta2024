@@ -1,5 +1,6 @@
 using SecretSanta.Boot;
 using SecretSanta.Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace SecretSanta.GameManagment
     {
         public static SecretSantaGame Instance;
         public PlayerData CurPlayerData;
+        public Action<UpgradeData> UpgradeAdded;
 
         private PlayerControls mainControls;
 
@@ -82,6 +84,11 @@ namespace SecretSanta.GameManagment
         {
             UpgradeTime = false;
             Time.timeScale = 1;
+        }
+
+        public void AddUpgrade(UpgradeData upgrade)
+        {
+            UpgradeAdded?.Invoke(upgrade);
         }
 
     }

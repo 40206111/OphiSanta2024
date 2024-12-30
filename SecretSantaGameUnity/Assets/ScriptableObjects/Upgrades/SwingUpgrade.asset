@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: SwingUpgrade
   m_EditorClassIdentifier: 
   Uses: 6
-  Title: Swing Faster
-  Body: Swooooooooosh
+  Title: Stretch! Unshrimp!!
+  Body: Swing your sword faster
+  AddHealth: 0
+  AddSpeed: 0
+  AddSwordSpeed: 0.3
+  AddSwordSize: 0
+  AddCollectRadius: 0
+  DecSwordCooldown: 0

@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: SizeUpgrade
   m_EditorClassIdentifier: 
   Uses: 3
-  Title: Bigger Is Better
-  Body: Make your sword bigger
+  Title: Really bad tarot reading
+  Body: You get the Ace of Swords. That means your sword gets bigger
+  AddHealth: 0
+  AddSpeed: 0
+  AddSwordSpeed: 0
+  AddSwordSize: 0.3
+  AddCollectRadius: 0
+  DecSwordCooldown: 0

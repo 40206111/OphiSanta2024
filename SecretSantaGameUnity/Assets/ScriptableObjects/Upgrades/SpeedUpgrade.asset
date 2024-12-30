@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: SpeedUpgrade
   m_EditorClassIdentifier: 
   Uses: 4
-  Title: Zoom
+  Title: Geography Quiz
   Body: Speed Up
+  AddHealth: 0
+  AddSpeed: 0.2
+  AddSwordSpeed: 0
+  AddSwordSize: 0
+  AddCollectRadius: 0
+  DecSwordCooldown: 0

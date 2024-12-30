@@ -1,4 +1,5 @@
 using SecretSanta.Data;
+using SecretSanta.GameManagment;
 using TMPro;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ namespace SecretSanta.Upgrades
             {
                 Data.Uses--;
             }
+
+            SecretSantaGame.Instance.UpgradeAdded(Data);
         }
     }
 }

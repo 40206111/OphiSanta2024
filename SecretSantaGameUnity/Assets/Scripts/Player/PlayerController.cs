@@ -9,12 +9,14 @@ namespace SecretSanta.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] SpriteRenderer playerSprite;
+        [SerializeField] CircleCollider2D _collectionRadBox;
         private PlayerControls playerControls;
         PlayerData _data;
 
         private void Awake()
         {
             playerControls = new PlayerControls();
+            SecretSantaGame.Instance.UpgradeAdded += UpgradeChosen;
         }
 
         private void OnEnable()
@@ -25,6 +27,11 @@ namespace SecretSanta.Player
         private void OnDisable()
         {
             playerControls.Disable();
+        }
+
+        private void OnDestroy()
+        {
+            SecretSantaGame.Instance.UpgradeAdded -= UpgradeChosen;
         }
 
         private void Update()
@@ -65,6 +72,14 @@ namespace SecretSanta.Player
             yield return new WaitForSeconds(0.05f);
 
             playerSprite.color = beforeCol;
+        }
+
+        public void UpgradeChosen(UpgradeData data)
+        {
+            _data.Health += data.AddHealth;
+            _data.Speed += data.AddSpeed;
+            _collectionRadBox.radius += data.AddCollectRadius;
+            SecretSantaGame.Instance.CurPlayerData = _data;
         }
     }
 }

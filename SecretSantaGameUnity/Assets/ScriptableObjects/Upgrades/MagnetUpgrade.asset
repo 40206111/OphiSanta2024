@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: MagnetUpgrade
   m_EditorClassIdentifier: 
   Uses: 6
-  Title: Magnet
-  Body: Bigger bit collection radious
+  Title: Subscribe!
+  Body: larger channel points collection radious
+  AddHealth: 0
+  AddSpeed: 0
+  AddSwordSpeed: 0
+  AddSwordSize: 0
+  AddCollectRadius: 0.3
+  DecSwordCooldown: 0
