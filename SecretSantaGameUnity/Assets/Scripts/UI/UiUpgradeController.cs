@@ -66,7 +66,7 @@ namespace SecretSanta.UI
                 if (_upgradeDataPool.Count == 0)
                 {
                     var id = Random.Range(0, _backUpUpgradeData.Count);
-                    var backUpData = _upgradeDataPool[id];
+                    var backUpData = _backUpUpgradeData[id];
                     upgrade.SetUp(backUpData);
                     _usedUpgrades.Add(backUpData);
                     continue;
