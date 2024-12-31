@@ -14,13 +14,15 @@ namespace SecretSanta.Enemy
         [SerializeField] SpriteRenderer _spriteRenderer;
         public float coolDownTimer;
 
+        float invincibleTimer = 1;
+        float maxInvincible = 1;
+
         public void SetColour()
         {
             float c = 5;
             float percentage = c / (float)(c + (Data.Health-1));
             percentage *= percentage;
-            Debug.Log($"{Data.Health}, {percentage}");
-            Color noHealth = new Color(0.4f, 0f, 0.4f, 1f);
+            var noHealth = new Color(0.4f, 0f, 0.4f, 1f);
             for (int i = 0; i < 3; ++i)
             {
                 noHealth[i] += (percentage * Mathf.Min(1f - noHealth[i], 0.9f));
@@ -39,10 +41,18 @@ namespace SecretSanta.Enemy
                 transform.position = Vector3.MoveTowards(transform.position, TargetObject.transform.position, Data.Speed * Time.deltaTime * 3f);
             }
             coolDownTimer = Mathf.Max(coolDownTimer - Time.deltaTime, 0);
+            if (invincibleTimer < maxInvincible)
+            {
+                invincibleTimer += Time.deltaTime;
+            }
         }
 
         public void DoDamage(int value)
         {
+            if (invincibleTimer < maxInvincible)
+            {
+                return;
+            }
             var newHealth = Data.Health - value;
             Data.Health = Mathf.Max(newHealth, 0);
             if (Data.Health <= 0)

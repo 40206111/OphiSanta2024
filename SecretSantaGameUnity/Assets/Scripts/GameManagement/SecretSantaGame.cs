@@ -63,9 +63,9 @@ namespace SecretSanta.GameManagment
             }
             if (!GameStarted)
             {
+                GameStarted = true;
                 Reset();
                 SceneLoader.Instance.Go();
-                GameStarted = true;
             }
         }
 

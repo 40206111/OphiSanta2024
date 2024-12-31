@@ -16,8 +16,9 @@ MonoBehaviour:
   Title: Geography Quiz
   Body: Speed Up
   AddHealth: 0
-  AddSpeed: 0.2
+  AddSpeed: 0.3
   AddSwordSpeed: 0
   AddSwordSize: 0
   AddCollectRadius: 0
   DecSwordCooldown: 0
+  AddSwordDamage: 0

@@ -12,6 +12,8 @@ namespace SecretSanta.Player
         [SerializeField] CircleCollider2D _collectionRadBox;
         private PlayerControls playerControls;
         PlayerData _data;
+        float maxInvincible = 1;
+        float invincibleTimer;
 
         private void Awake()
         {
@@ -46,10 +48,18 @@ namespace SecretSanta.Player
             var pos = transform.position;
             pos += new Vector3(velocity.x, velocity.y, 0);
             transform.position = pos;
+            if (invincibleTimer < maxInvincible)
+            {
+                invincibleTimer += Time.deltaTime;
+            }
         }
 
         public void DoDamage( int value )
         {
+            if (invincibleTimer < maxInvincible)
+            {
+                return;
+            }
             var health = _data.Health - value;
             _data.Health = Mathf.Max(health, 0);
             if (health == 0)
