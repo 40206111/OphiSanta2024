@@ -9,7 +9,7 @@ namespace SecretSanta.Enemy
     {
         [SerializeField] GameObject _player;
         [SerializeField] Enemy _enemyPrefab;
-        [SerializeField] float _spawnRadius = 5;
+        [SerializeField] float _spawnRadius = 10;
         [SerializeField] float _spawnCooldown = 2;
         [SerializeField] float _deadZone = 2;
 

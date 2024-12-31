@@ -17,7 +17,8 @@ MonoBehaviour:
   Body: Swing your sword faster
   AddHealth: 0
   AddSpeed: 0
-  AddSwordSpeed: 0.3
+  AddSwordSpeed: 0.5
   AddSwordSize: 0
   AddCollectRadius: 0
   DecSwordCooldown: 0
+  AddSwordDamage: 0
