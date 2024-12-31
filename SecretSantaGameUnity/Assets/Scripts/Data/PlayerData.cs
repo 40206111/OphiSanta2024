@@ -6,6 +6,7 @@ namespace SecretSanta.Data
     {
         public int Experience;
         public int XpToNextLvl;
+        public int Level;
 
         public override void SetDefultData()
         {
@@ -14,6 +15,7 @@ namespace SecretSanta.Data
             Health = 6;
             Experience = 0;
             XpToNextLvl = 5;
+            Level = 0;
         }
     }
 }

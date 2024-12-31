@@ -16,6 +16,7 @@ namespace SecretSanta.Data
         public float AddSwordSize;
         public float AddCollectRadius;
         public float DecSwordCooldown;
+        public int AddSwordDamage;
 
         public UpgradeData(UpgradeSO data)
         {
@@ -28,6 +29,7 @@ namespace SecretSanta.Data
             AddSwordSize = data.AddSwordSize;
             AddCollectRadius = data.AddCollectRadius;
             DecSwordCooldown = data.DecSwordCooldown;
+            AddSwordDamage = data.AddSwordDamage;
     }
     }
 }

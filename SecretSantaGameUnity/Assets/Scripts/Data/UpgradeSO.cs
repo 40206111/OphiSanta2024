@@ -15,6 +15,7 @@ namespace SecretSanta.Data
         public float AddSwordSize;
         public float AddCollectRadius;
         public float DecSwordCooldown;
+        public int AddSwordDamage;
 
     }
 }

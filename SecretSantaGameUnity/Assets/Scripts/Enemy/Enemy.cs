@@ -11,7 +11,20 @@ namespace SecretSanta.Enemy
         public GameObject TargetObject;
         public EnemyData Data = new EnemyData();
         [SerializeField] GameObject _doot;
+        [SerializeField] SpriteRenderer _spriteRenderer;
         public float coolDownTimer;
+
+        private void OnEnable()
+        {
+            var colour = new Color
+            {
+                r = 0.5f + Data.Health * 0.1f,
+                g = Data.Health * 0.1f,
+                b = 0.5f + Data.Health * 0.1f,
+                a = 100
+            };
+            _spriteRenderer.color = colour;
+        }
 
         private void Update()
         {
@@ -30,9 +43,32 @@ namespace SecretSanta.Enemy
         {
             var newHealth = Data.Health - value;
             Data.Health = Mathf.Max(newHealth, 0);
-            gameObject.SetActive(false);
-            var doot = Instantiate(_doot);
-            doot.transform.position = transform.position;
+            if (Data.Health <= 0)
+            {
+                gameObject.SetActive(false);
+                var doot = Instantiate(_doot);
+                doot.transform.position = transform.position;
+            }
+            else
+            {
+                StartCoroutine(FlashRed());
+            }
+        }
+
+        private IEnumerator<YieldInstruction> FlashRed()
+        {
+            _spriteRenderer.color = Color.red;
+
+            yield return new WaitForSeconds(0.05f);
+
+            var colour = new Color
+            {
+                r = 0.5f + Data.Health * 0.1f,
+                g = Data.Health * 0.1f,
+                b = 0.5f + Data.Health * 0.1f,
+                a = 100
+            };
+            _spriteRenderer.color = colour;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

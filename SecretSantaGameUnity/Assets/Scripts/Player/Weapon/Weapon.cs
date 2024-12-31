@@ -81,6 +81,7 @@ namespace SecretSanta.Weapon
         {
             Data.Cooldown -= data.DecSwordCooldown;
             Data.Speed += data.AddSwordSpeed;
+            Data.Damage += data.AddSwordDamage;
             transform.localScale *= (1 + data.AddSwordSize);
         }
     }

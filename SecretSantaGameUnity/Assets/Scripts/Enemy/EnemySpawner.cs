@@ -1,3 +1,4 @@
+using SecretSanta.GameManagment;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,35 +32,54 @@ namespace SecretSanta.Enemy
 
             if (_coolDownTimer >= _spawnCooldown)
             {
-                Enemy enemy;
-                if (_enemyPool.Count > 0)
-                {
-                    enemy = _enemyPool[^1];
-                    _enemyPool.RemoveAt(_enemyPool.Count - 1);
-                }
-                else
-                {
-                    enemy = Instantiate(_enemyPrefab, transform);
-                }
-                enemy.Data.SetDefultData();
-                enemy.gameObject.SetActive(true);
-                var randX = Random.Range(-_spawnRadius, _spawnRadius);
-                randX = randX > 0 ? Mathf.Max(randX, _deadZone) : Mathf.Min(randX, -_deadZone);
-                var randY = Random.Range(-_spawnRadius, _spawnRadius);
-                randY = randY > 0 ? Mathf.Max(randY, _deadZone) : Mathf.Min(randY, -_deadZone);
-                var spawnPos = _player.transform.position;
-                spawnPos.x += randX;
-                spawnPos.y += randY;
-                enemy.transform.position = spawnPos;
-
-                enemy.TargetObject = _player;
-
-                _activeEnemies.Add(enemy);
-                _coolDownTimer = 0;
+                Spawn();
                 return;
             }
 
             _coolDownTimer += Time.deltaTime;
+        }
+
+        void Spawn(int times = 0)
+        {
+            Enemy enemy;
+            if (_enemyPool.Count > 0)
+            {
+                enemy = _enemyPool[^1];
+                _enemyPool.RemoveAt(_enemyPool.Count - 1);
+            }
+            else
+            {
+                enemy = Instantiate(_enemyPrefab, transform);
+            }
+            var playerLevel = SecretSantaGame.Instance.CurPlayerData.Level;
+            enemy.Data.SetDefultData();
+            var maxRandHealth = playerLevel;
+            enemy.Data.Health = Random.Range(enemy.Data.Health, playerLevel);
+            var maxRandSpeed = enemy.Data.Speed + (0.05f * playerLevel);
+            maxRandSpeed = Mathf.Min(maxRandSpeed, SecretSantaGame.Instance.CurPlayerData.Speed - 0.5f);
+            enemy.Data.Speed = Random.Range(enemy.Data.Speed, maxRandSpeed);
+            enemy.gameObject.SetActive(true);
+            var randX = Random.Range(-_spawnRadius, _spawnRadius);
+            randX = randX > 0 ? Mathf.Max(randX, _deadZone) : Mathf.Min(randX, -_deadZone);
+            var randY = Random.Range(-_spawnRadius, _spawnRadius);
+            randY = randY > 0 ? Mathf.Max(randY, _deadZone) : Mathf.Min(randY, -_deadZone);
+            var spawnPos = _player.transform.position;
+            spawnPos.x += randX;
+            spawnPos.y += randY;
+            enemy.transform.position = spawnPos;
+
+            enemy.TargetObject = _player;
+
+            _activeEnemies.Add(enemy);
+            var maxCoolRange = 0 + playerLevel * 0.05f;
+            maxCoolRange = Mathf.Min(maxCoolRange, _spawnCooldown - 0.1f);
+            _coolDownTimer = Random.Range(0, maxCoolRange);
+
+            var spawnAgain = Random.Range(0.0f, 1.0f);
+            if (spawnAgain >= 0.8f + times * 0.1f)
+            {
+                Spawn(times++);
+            }
         }
 
     }

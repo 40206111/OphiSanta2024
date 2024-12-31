@@ -126,6 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetObject: {fileID: 0}
   _doot: {fileID: 2295955224308570802, guid: 46eee5b4adef50842a768d0b0b864b1b, type: 3}
+  _spriteRenderer: {fileID: 6357820154886939952}
+  coolDownTimer: 0
+  _invincibilityTime: 0.1
 --- !u!50 &6568473807637045318
 Rigidbody2D:
   serializedVersion: 4

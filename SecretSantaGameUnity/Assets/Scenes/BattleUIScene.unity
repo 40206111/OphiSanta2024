@@ -288,8 +288,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5838e0bd6eb040947b84e1b1ff46415b, type: 2}
   - {fileID: 11400000, guid: fb200e102256c774a82059dac8168bf6, type: 2}
   - {fileID: 11400000, guid: 30c13efd49d86704b9e9949bca6a076e, type: 2}
+  - {fileID: 11400000, guid: 714c27a433f169a4984c76ee1466dca6, type: 2}
   BackUpUpgrades:
   - {fileID: 11400000, guid: 30c13efd49d86704b9e9949bca6a076e, type: 2}
+  - {fileID: 11400000, guid: 714c27a433f169a4984c76ee1466dca6, type: 2}
   UpgradePrefab: {fileID: 639453893330750171, guid: 5e2b9182b25bceb4083bd1427c4de4f8, type: 3}
   _upgradesToShow: 3
 --- !u!1 &193213140

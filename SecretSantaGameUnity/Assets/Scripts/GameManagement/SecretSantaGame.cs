@@ -42,6 +42,8 @@ namespace SecretSanta.GameManagment
                 Time.timeScale = 0;
                 UpgradeTime = true;
                 CurPlayerData.Experience -= CurPlayerData.XpToNextLvl;
+                CurPlayerData.Level++;
+                CurPlayerData.XpToNextLvl += 2;
             }
         }
 
