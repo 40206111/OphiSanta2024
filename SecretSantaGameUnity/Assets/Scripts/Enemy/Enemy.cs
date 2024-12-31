@@ -14,16 +14,18 @@ namespace SecretSanta.Enemy
         [SerializeField] SpriteRenderer _spriteRenderer;
         public float coolDownTimer;
 
-        private void OnEnable()
+        public void SetColour()
         {
-            var colour = new Color
+            float c = 5;
+            float percentage = c / (float)(c + (Data.Health-1));
+            percentage *= percentage;
+            Debug.Log($"{Data.Health}, {percentage}");
+            Color noHealth = new Color(0.4f, 0f, 0.4f, 1f);
+            for (int i = 0; i < 3; ++i)
             {
-                r = 0.5f + Data.Health * 0.1f,
-                g = Data.Health * 0.1f,
-                b = 0.5f + Data.Health * 0.1f,
-                a = 100
-            };
-            _spriteRenderer.color = colour;
+                noHealth[i] += (percentage * Mathf.Min(1f - noHealth[i], 0.9f));
+            }
+            _spriteRenderer.color = noHealth;
         }
 
         private void Update()
@@ -61,14 +63,7 @@ namespace SecretSanta.Enemy
 
             yield return new WaitForSeconds(0.05f);
 
-            var colour = new Color
-            {
-                r = 0.5f + Data.Health * 0.1f,
-                g = Data.Health * 0.1f,
-                b = 0.5f + Data.Health * 0.1f,
-                a = 100
-            };
-            _spriteRenderer.color = colour;
+            SetColour();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

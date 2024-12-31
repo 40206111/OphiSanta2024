@@ -50,6 +50,7 @@ namespace SecretSanta.Enemy
             else
             {
                 enemy = Instantiate(_enemyPrefab, transform);
+                enemy.gameObject.SetActive(false);
             }
             var playerLevel = SecretSantaGame.Instance.CurPlayerData.Level;
             enemy.Data.SetDefultData();
@@ -58,6 +59,7 @@ namespace SecretSanta.Enemy
             var maxRandSpeed = enemy.Data.Speed + (0.05f * playerLevel);
             maxRandSpeed = Mathf.Min(maxRandSpeed, SecretSantaGame.Instance.CurPlayerData.Speed - 0.5f);
             enemy.Data.Speed = Random.Range(enemy.Data.Speed, maxRandSpeed);
+            enemy.SetColour();
             enemy.gameObject.SetActive(true);
             var randX = Random.Range(-_spawnRadius, _spawnRadius);
             randX = randX > 0 ? Mathf.Max(randX, _deadZone) : Mathf.Min(randX, -_deadZone);
