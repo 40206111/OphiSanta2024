@@ -69,6 +69,7 @@ namespace SecretSanta.Player
             }
             SecretSantaGame.Instance.CurPlayerData = _data;
             StartCoroutine(FlashRed());
+            invincibleTimer = 0;
         }
 
         private IEnumerator<YieldInstruction> FlashRed()

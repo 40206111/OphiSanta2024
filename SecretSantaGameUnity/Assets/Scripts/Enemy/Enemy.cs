@@ -65,6 +65,7 @@ namespace SecretSanta.Enemy
             {
                 StartCoroutine(FlashRed());
             }
+            invincibleTimer = 0;
         }
 
         private IEnumerator<YieldInstruction> FlashRed()
